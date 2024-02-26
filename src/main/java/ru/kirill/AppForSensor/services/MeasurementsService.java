@@ -6,6 +6,8 @@ import org.springframework.stereotype.Service;
 import ru.kirill.AppForSensor.models.Measurements;
 import ru.kirill.AppForSensor.repositories.MeasurementsRepository;
 
+import java.util.List;
+
 @Service
 public class MeasurementsService {
 
@@ -18,5 +20,20 @@ public class MeasurementsService {
 
     public void save(Measurements measurements) throws DataAccessException {
         measurementsRepository.save(measurements);
+    }
+
+    public List<Measurements> index(){
+        return measurementsRepository.findAll();
+    }
+
+    public int countRainDays(){
+        List<Measurements> measurements = index();
+
+        int count = 0;
+        for(Measurements measurement : measurements){
+            if(measurement.isRaining()) count++;
+        }
+
+        return count;
     }
 }
