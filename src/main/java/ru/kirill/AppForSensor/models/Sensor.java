@@ -8,6 +8,8 @@ import lombok.Data;
 import lombok.Generated;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -24,6 +26,9 @@ public class Sensor {
     @NotEmpty(message = "Name shouldn't be empty")
     @Size(min = 2, max = 30, message = "Non valid name")
     private String name;
+
+    @OneToMany(mappedBy = "sensor")
+    private List<Measurements> measurements;
 
     public Sensor(String name) {
         this.name = name;

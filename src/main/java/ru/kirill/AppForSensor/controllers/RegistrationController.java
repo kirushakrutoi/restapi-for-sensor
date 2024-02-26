@@ -17,6 +17,7 @@ import ru.kirill.AppForSensor.models.Sensor;
 import ru.kirill.AppForSensor.services.SensorService;
 
 import java.sql.SQLException;
+import java.util.Arrays;
 
 @RestController
 @RequestMapping("/sensors")
@@ -32,7 +33,7 @@ public class RegistrationController {
     }
 
     @PostMapping("/registration")
-    public ResponseEntity<HttpStatus> registrations(@RequestBody @Valid SensorDTO sensorDTO,
+    public ResponseEntity<HttpStatus> registration(@RequestBody @Valid SensorDTO sensorDTO,
                                                     BindingResult bindingResult) {
 
         if(bindingResult.hasErrors()){
@@ -44,6 +45,8 @@ public class RegistrationController {
         try {
             sensorService.save(sensor);
         } catch (DataAccessException e){
+            System.out.println(e.getMessage());
+            e.printStackTrace();
             throw new SensorNotCreatedException("Sensor is exist");
         }
 

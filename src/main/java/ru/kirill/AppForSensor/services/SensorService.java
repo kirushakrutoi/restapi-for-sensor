@@ -8,6 +8,7 @@ import ru.kirill.AppForSensor.models.Sensor;
 import ru.kirill.AppForSensor.repositories.SensorRepository;
 
 import java.sql.SQLException;
+import java.util.List;
 
 @Service
 @Transactional(readOnly = true)
@@ -24,5 +25,7 @@ public class SensorService {
         sensorRepository.save(sensor);
     }
 
-
+    public Sensor findByName(String name){
+        return sensorRepository.findByName(name);
+    }
 }
