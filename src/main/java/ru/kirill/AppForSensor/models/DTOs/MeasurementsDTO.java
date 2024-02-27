@@ -24,6 +24,6 @@ public class MeasurementsDTO {
 
     private boolean raining;
 
-    private Sensor sensor;
+    private SensorDTO sensor;
 
 }

@@ -18,6 +18,9 @@ import ru.kirill.AppForSensor.models.Sensor;
 import ru.kirill.AppForSensor.services.MeasurementsService;
 import ru.kirill.AppForSensor.services.SensorService;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @RestController
 @RequestMapping("/measurements")
 public class MeasurementsController {
@@ -59,9 +62,14 @@ public class MeasurementsController {
         return new HttpEntity<>(HttpStatus.OK);
     }
 
+    @GetMapping
+    public List<MeasurementsDTO> index(){
+        return measurementsService.index().stream().map(this::convertToMeasurementsDTO).collect(Collectors.toList());
+    }
+
    @GetMapping("/rainyDaysCount")
-   public String rainyDaysCount(){
-        return String.valueOf(measurementsService.countRainDays());
+   public int rainyDaysCount(){
+        return measurementsService.countRainDays();
    }
 
     @ExceptionHandler
@@ -78,5 +86,12 @@ public class MeasurementsController {
         Sensor sensor = sensorService.findByName(measurements.getSensor().getName());
         measurements.setSensor(sensor);
         return measurements;
+    }
+
+    private MeasurementsDTO convertToMeasurementsDTO(Measurements measurements) throws NullPointerException{
+        MeasurementsDTO measurementsDTO = modelMapper.map(measurements, MeasurementsDTO.class);
+        Sensor sensor = sensorService.findByName(measurements.getSensor().getName());
+        measurements.setSensor(sensor);
+        return measurementsDTO;
     }
 }

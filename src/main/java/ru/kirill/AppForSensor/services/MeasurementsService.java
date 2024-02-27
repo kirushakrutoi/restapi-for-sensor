@@ -36,4 +36,8 @@ public class MeasurementsService {
 
         return count;
     }
+
+    public void test(){
+        System.out.println("Test");
+    }
 }
