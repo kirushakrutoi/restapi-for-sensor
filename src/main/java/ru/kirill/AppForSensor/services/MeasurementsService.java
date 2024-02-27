@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import ru.kirill.AppForSensor.models.Measurements;
 import ru.kirill.AppForSensor.repositories.MeasurementsRepository;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -19,6 +20,7 @@ public class MeasurementsService {
     }
 
     public void save(Measurements measurements) throws DataAccessException {
+        measurements.setCreatedAt(LocalDateTime.now());
         measurementsRepository.save(measurements);
     }
 
