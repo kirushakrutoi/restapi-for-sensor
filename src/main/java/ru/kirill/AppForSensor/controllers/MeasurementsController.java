@@ -85,6 +85,8 @@ public class MeasurementsController {
         Measurements measurements = modelMapper.map(measurementsDTO, Measurements.class);
         Sensor sensor = sensorService.findByName(measurements.getSensor().getName());
         measurements.setSensor(sensor);
+        System.out.println(sensor);
+        System.out.println(sensor.getName());
         return measurements;
     }
 

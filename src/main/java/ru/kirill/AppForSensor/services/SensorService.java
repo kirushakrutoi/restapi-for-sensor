@@ -9,6 +9,7 @@ import ru.kirill.AppForSensor.repositories.SensorRepository;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional(readOnly = true)

@@ -45,8 +45,6 @@ public class RegistrationController {
         try {
             sensorService.save(sensor);
         } catch (DataAccessException e){
-            System.out.println(e.getMessage());
-            e.printStackTrace();
             throw new SensorNotCreatedException("Sensor is exist");
         }
 

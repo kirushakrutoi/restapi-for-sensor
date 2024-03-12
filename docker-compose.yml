@@ -1,0 +1,26 @@
+version: "3.9"
+
+services:
+  sensor:
+    build: ./
+    container_name: sensor
+    environment:
+      SPRING_DB_URL: jdbc:postgresql://db:5432/Sensor
+      SPRING_DB_USER: kirill
+      SPRING_DB_PASSWORD: 12345
+      HIBERNATE_DDL_AUTO: create-drop
+    ports:
+      - "8080:8080"
+    restart: unless-stopped
+    depends_on:
+      - db
+
+  db:
+    image: postgres:15
+    container_name: db
+    environment:
+      POSTGRES_DB: Sensor
+      POSTGRES_USER: kirill
+      POSTGRES_PASSWORD: 12345
+    ports:
+      - 5432
