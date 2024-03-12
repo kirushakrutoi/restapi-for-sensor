@@ -45,12 +45,13 @@ REST API для принятия HTTP запросов с данными в фо
 <h2>END POINTS</h2>
 
 -  Регистрация нового датчика в системе: POST /sensors/registration
+ </br>
    ![alt-text](/img/add_sensor.png)
--  Добавление измерения: POST /measurements/add
+-  Добавление измерения: POST /measurements/add </br>
    ![alt-text](/img/get_mes.png)
--  Получение всех измерений: GET /measurements
+-  Получение всех измерений: GET /measurements </br>
    ![alt-text](/img/get_all.png)
--  Получение количества дождливых дней: GET /measurements/rainyDaysCount
+-  Получение количества дождливых дней: GET /measurements/rainyDaysCount </br>
    ![alt-text](/img/rainy_day.png)
 
 
